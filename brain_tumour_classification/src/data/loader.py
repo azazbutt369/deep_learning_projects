@@ -1,21 +1,37 @@
 import os
-from typing import Tuple
+import cv2
+from tqdm import tqdm
 
-def get_data_paths(base_dir: str) -> Tuple[str, str, str]:
+
+def load_images(data_dir, labels, image_size=150):
     """
-    Returns train, validation, and test directory paths.
-
-    Expected structure:
-    base_dir/
-        train/
-        val/
-        test/
+    Loads images exactly as in notebook:
+    - Reads from Training and Testing folders
+    - Resizes using cv2
+    - Stores in lists
     """
-    train_dir = os.path.join(base_dir, "train")
-    val_dir = os.path.join(base_dir, "val")
-    test_dir = os.path.join(base_dir, "test")
 
-    if not os.path.exists(train_dir):
-        raise FileNotFoundError(f"Train directory not found: {train_dir}")
+    X = []
+    Y = []
 
-    return train_dir, val_dir, test_dir
+    # Training data
+    for label in labels:
+        folder_path = os.path.join(data_dir, 'Training', label)
+        for file in tqdm(os.listdir(folder_path), desc=f"Loading Training - {label}"):
+            img_path = os.path.join(folder_path, file)
+            img = cv2.imread(img_path)
+            img = cv2.resize(img, (image_size, image_size))
+            X.append(img)
+            Y.append(label)
+
+    # Testing data
+    for label in labels:
+        folder_path = os.path.join(data_dir, 'Testing', label)
+        for file in tqdm(os.listdir(folder_path), desc=f"Loading Testing - {label}"):
+            img_path = os.path.join(folder_path, file)
+            img = cv2.imread(img_path)
+            img = cv2.resize(img, (image_size, image_size))
+            X.append(img)
+            Y.append(label)
+
+    return X, Y
