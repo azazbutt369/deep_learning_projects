@@ -3,7 +3,8 @@
 import argparse
 
 from src.data.dataset import prepare_dataset
-
+from src.utils.config import load_config
+from src.utils.seed import set_seed
 from src.models.effnetv2b3 import build_effnetv2b3
 from src.models.densenet121 import build_densenet121
 from src.models.effnetb4 import build_effnetb4
