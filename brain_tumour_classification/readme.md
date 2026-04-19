@@ -2,7 +2,7 @@
 
 ## 📌 Abstract
 
-Accurate classification of brain tumors from medical imaging is a critical task in computer-aided diagnosis. This repository presents a deep learning-based approach for multi-class brain tumor classification using an ensemble of pretrained convolutional neural networks. Specifically, EfficientNetV2B3, DenseNet121, EfficientNetB4, and Xception architectures are employed as feature extractors with a custom classification head. Predictions from individual models are combined using a simple averaging ensemble strategy. The implementation follows a deterministic and reproducible pipeline derived directly from experimental notebook-based research.
+Accurate classification of brain tumors from medical imaging is a critical task in computer-aided diagnosis. This repository presents a deep learning-based approach for multi-class brain tumor classification using an ensemble of pretrained convolutional neural networks. Specifically, EfficientNetV2B3, EfficientNetB0, and Xception architectures are employed as feature extractors with a custom classification head. Predictions from individual models are combined using a simple averaging ensemble strategy. The implementation follows a deterministic and reproducible pipeline derived directly from experimental notebook-based research.
 
 ---
 
