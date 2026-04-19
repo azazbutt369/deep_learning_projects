@@ -1,0 +1,9 @@
+# configs/model_config.yaml
+
+model_name: "effnetv2b3"
+
+available_models:
+  - effnetv2b3
+  - densenet121
+  - effnetb4
+  - xception
