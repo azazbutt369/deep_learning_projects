@@ -1,0 +1,23 @@
+# configs/config.yaml
+
+data:
+  data_dir: "data/raw"
+  image_size: 150
+  labels:
+    - glioma
+    - meningioma
+    - notumor
+    - pituitary
+
+training:
+  batch_size: 32
+  epochs: 20
+  validation_split: 0.1
+
+model:
+  input_shape: [150, 150, 3]
+  num_classes: 4
+
+reproducibility:
+  seed: 42
+  deterministic: false
