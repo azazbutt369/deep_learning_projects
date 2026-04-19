@@ -203,6 +203,63 @@ The results are obtained directly from the notebook implementation. The followin
 * Confusion Matrix
 * Classification Report
 
+### 🔹 Model-wise Performance
+
+| Model             | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) |
+|------------------|----------|----------|--------|----------|
+| EfficientNetV2B3 | 95.11    | 95    | 95  | 95    |
+| EfficientNetB3   | 80.43    | 82    | 82  | 80    |
+| Xception         | 94.50    | 94    | 95  | 95    |
+| **Ensemble (Avg)** | **96.02** | **96** | **96** | **96** |
+
+### 🔹 Hyperparameter Selection
+
+The hyperparameters used in this study are directly derived from the original experimental notebook and kept consistent across all models to ensure fair comparison.
+
+#### 📌 Training Configuration
+
+| Parameter        | Value |
+|-----------------|------|
+| Optimizer       | Adam (default settings) |
+| Loss Function   | Categorical Crossentropy |
+| Batch Size      | 32 |
+| Epochs          | 20 |
+| Validation Split| 10% (via train_test_split) |
+| Input Size      | 150 × 150 × 3 |
+
+---
+
+#### 📌 Model Architecture Configuration
+
+| Component                  | Setting |
+|---------------------------|--------|
+| Pretrained Weights        | ImageNet |
+| Include Top Layer         | No (`include_top=False`) |
+| Feature Extractor         | Frozen (no fine-tuning) |
+| Pooling Layer             | GlobalAveragePooling2D |
+| Dense Layer               | 128 units (ReLU) |
+| Dropout                   | 0.5 |
+| Output Layer              | Softmax (4 classes) |
+
+---
+
+#### 📌 Callbacks
+
+| Callback              | Configuration |
+|----------------------|--------------|
+| EarlyStopping        | monitor=val_loss, patience=10 |
+| ReduceLROnPlateau    | factor=0.3, patience=5, min_lr=1e-6 |
+
+---
+
+#### 📌 Ensemble Strategy
+
+| Parameter        | Value |
+|-----------------|------|
+| Ensemble Type   | Simple Averaging |
+| Weighting       | Equal weights |
+| Final Decision  | Argmax over averaged predictions |
+
 ---
 
 ## 🔁 Reproducibility
